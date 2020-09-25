@@ -16,6 +16,7 @@
 
 if (Get-Module chocolateyProfile) { return }
 
+$savedPwd = "$pwd"
 $thisDirectory = (Split-Path -parent $MyInvocation.MyCommand.Definition)
 
 . $thisDirectory\functions\Write-FunctionCallLogMessage.ps1
@@ -25,3 +26,4 @@ $thisDirectory = (Split-Path -parent $MyInvocation.MyCommand.Definition)
 . $thisDirectory\ChocolateyTabExpansion.ps1
 
 Export-ModuleMember -Alias refreshenv -Function 'Update-SessionEnvironment', 'TabExpansion'
+cd $savedPwd
